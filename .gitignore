@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+.DS_Store
+.ipynb_checkpoints/
+archive-inventory.json
+*.log
+# Keep the existing ROAD ACCIDENT.zip tracked; do not blanket-ignore ZIP files.
