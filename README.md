@@ -1,6 +1,6 @@
 # Road Accident Analysis — Power BI Dashboard
 
-**Power BI · Road safety analytics · 2021–2022**
+**Power BI · Road safety analytics · 2026**
 
 This repository contains an existing Microsoft Power BI dashboard project, its Excel dataset and design resources in [ROAD ACCIDENT.zip](ROAD%20ACCIDENT.zip). The source materials have now been inspected rather than described from the filename alone.
 
