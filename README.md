@@ -1,63 +1,100 @@
-# Bavaria Road Safety Analytics Dashboard
+# Road Accident Analysis — Power BI Dashboard
 
-**Road safety · Bavaria · Data analytics · Dashboard project**
+**Power BI · Road safety analytics · 2021–2022**
 
-An analytics project exploring road-safety data for Bavaria, Germany. This repository currently preserves the original project materials in **[ROAD ACCIDENT.zip](ROAD%20ACCIDENT.zip)**. The archive was uploaded in July 2025; the original README contained only the project title.
+This repository contains an existing Microsoft Power BI dashboard project, its Excel dataset and design resources in [ROAD ACCIDENT.zip](ROAD%20ACCIDENT.zip). The source materials have now been inspected rather than described from the filename alone.
 
-> **Project verification status:** The contents of `ROAD ACCIDENT.zip` have **not yet been independently inspected** in this repository review. Consequently, this README does **not** claim a specific BI platform, accident count, data source, date range, dashboard design, or analytical finding. Please review the archive before publishing any such claims.
+> **Important geography note:** Although this repository is named *Bavaria Road Safety Analytics Dashboard*, the Excel file contains local-authority labels such as **Birmingham, Leeds, Manchester, Kensington and Chelsea, and Highland**, alongside UK police-force names and geographic coordinates. These records represent **Great Britain / UK locations, not verified Bavaria data**. The original repository name is retained for continuity until the owner decides whether to rename it.
 
-## What is in this repository?
+## Verified project overview
 
-| Path | Purpose |
+| Property | Finding from the original files |
 | --- | --- |
-| [ROAD ACCIDENT.zip](ROAD%20ACCIDENT.zip) | Original project archive (approximately 63 MB); preserved unchanged |
-| [tools/archive_inventory.py](tools/archive_inventory.py) | Inspect the ZIP's file names, types and metadata without extracting it |
-| [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Download, inspect and open the project files |
-| [docs/DATA_AND_METRICS.md](docs/DATA_AND_METRICS.md) | Data-source attribution and metric-definition checklist |
-| [docs/PUBLISHING_CHECKLIST.md](docs/PUBLISHING_CHECKLIST.md) | Steps to turn the archive into a reproducible portfolio repository |
-| [tests/](tests/) | Tests for the archive-inspection utility |
-| [.github/workflows/quality.yml](.github/workflows/quality.yml) | Automated Python unit tests |
+| Dashboard software | **Microsoft Power BI Desktop** |
+| Editable report | **Road_Accident_Analysing_Model.pbix** |
+| Data source | **Road Accident Data.xlsx**, worksheet **Data** |
+| Data size | **307,973 records**, **21 fields**, plus a header row |
+| Stored dates | **2021–2022** using the standard Excel 1900-date convention |
+| Report pages | **1**, with KPI cards, category charts, map and slicers |
+| Original project | **ROAD ACCIDENT.zip** (preserved unchanged) |
+| Design assets | PPTX/JPG Power BI background and 11 PNG images |
 
-## Start here
+## Dashboard visuals
 
-1. **Download** [ROAD ACCIDENT.zip](ROAD%20ACCIDENT.zip) from GitHub.
-2. **Inspect** its contents without opening or executing anything:
+The Power BI report metadata identifies the following components:
 
-   ~~~bash
-   python tools/archive_inventory.py "ROAD ACCIDENT.zip" --output archive-inventory.json --sha256
-   ~~~
+- KPI cards referring to **CY Accident**, **CY Casualties** and **YOY Casualities** measures.
+- A **monthly stacked-area chart** using casualty totals and a year hierarchy.
+- Donut charts for **urban versus rural** area and **light conditions**.
+- A bar chart of **casualties by road type**.
+- A **map** of longitude/latitude and local-authority district with casualty and vehicle tooltips.
+- Weather-condition and road-surface-condition **slicers**.
+- A vehicle-type card, image decorations and a report title.
 
-3. **Review** the generated `archive-inventory.json` for file formats, directories and any warnings.
-4. **Extract** the ZIP to a local folder only if you trust the archive and have inspected the file names. Instructions for opening common project types are in [GETTING_STARTED.md](docs/GETTING_STARTED.md).
+See [Power BI audit](docs/POWER_BI_AUDIT.md) for the exact data-field references. The report has not been opened or refreshed in Power BI Desktop during this review, so final rendered KPI values and DAX formula definitions remain unverified.
 
-No extra Python packages are required to run the inventory tool.
+## How to use the project
 
-## Research / dashboard questions
+1. Download [ROAD ACCIDENT.zip](ROAD%20ACCIDENT.zip) and extract it locally.
+2. Open **ROAD ACCIDENT/Road_Accident_Analysing_Model.pbix** in **Power BI Desktop**.
+3. If prompted to reconnect data, update the workbook path to **ROAD ACCIDENT/Road Accident Data.xlsx** in Power Query / data source settings, and refresh.
+4. Inspect the dashboard and filters, then verify metrics against the original data and its definitions.
 
-Depending on the data actually contained in the project, a road safety dashboard **could** investigate the distribution of road incidents by geography, time, severity or road-user category. These are **possible analysis dimensions**, not a claim that this ZIP already contains those measures. Definitions, coverage and data-source permissions must be established before producing or interpreting a chart.
+For extraction and inspection instructions see [Getting started](docs/GETTING_STARTED.md).
 
-## Roadmap for a complete portfolio-quality project
+## Source data — quality considerations
 
-- [x] Keep the existing archive and repository history intact
-- [x] Provide transparent documentation and a safe ZIP inventory utility
-- [x] Add dependency-free unit tests and automated checks
-- [ ] Verify and document the files inside `ROAD ACCIDENT.zip`
-- [ ] Identify the actual dashboard platform and upload editable project files, where licensed and practical
-- [ ] Add **real** screenshots of the dashboard and describe its interactions
-- [ ] Record original data source(s), license(s), time coverage, geographic unit and transformations
-- [ ] Add a verified metric dictionary, findings and reproducible refresh steps
+| Workbook audit | Observed value |
+| --- | ---: |
+| 2021 data rows | 163,554 |
+| 2022 data rows | 144,419 |
+| Distinct accident record IDs | 307,973 |
+| Distinct local-authority names | 422 |
+| Distinct police-force names | 51 |
 
-See the [publishing checklist](docs/PUBLISHING_CHECKLIST.md).
+**Two issues need investigation before you publish statistical findings:**
 
-## Limitations and responsible interpretation
+1. The stored **Day_of_Week** does not match the weekday implied by **Accident Date** for **307,973 out of 307,973** records (assuming standard Excel serial dates). This suggests a systemic date-conversion or alignment problem, so temporal charts require verification.
+2. **Accident_Severity** contains **49 records labeled “Fetal”** as well as **3,904 records labeled “Fatal”**. The source must confirm whether that is a typo; the original data has not been modified.
 
-- **Accident totals are not necessarily risk rates.** Comparisons across districts or periods may need population, vehicle-distance, or another justified exposure denominator.
-- The same terms (e.g., *accident*, *casualty*, *serious injury*) may be defined differently by different datasets. Verify definitions before comparing sources.
-- Data may include privacy or usage restrictions. Do not publish raw personally identifying information, restricted datasets or credentials.
-- No dashboard screenshot or external benchmark has been validated from the ZIP yet.
+The upstream dataset provider and original usage rights have **not been verified**. See [Workbook data audit](docs/DATA_AUDIT.md). Counts here describe the supplied file only, not certified government statistics.
 
-## License and attribution
+## Project structure
 
-The repository contains an [Apache License 2.0](LICENSE) file. **Third-party datasets, maps, images and BI assets may be subject to separate terms**; do not assume the repository license grants redistribution rights to them.
+~~~text
+Bavaria-Road-Safety-Analytics-Dashboard/
+├── ROAD ACCIDENT.zip
+├── README.md
+├── LICENSE
+├── docs/
+│   ├── GETTING_STARTED.md
+│   ├── POWER_BI_AUDIT.md
+│   ├── DATA_AUDIT.md
+│   └── PUBLISHING_CHECKLIST.md
+├── tools/
+│   ├── archive_inventory.py
+│   └── inspect_pbix.py
+├── tests/
+└── .github/workflows/quality.yml
+~~~
 
-**Maintainer:** [MD-IKRAM169](https://github.com/MD-IKRAM169)
+Both metadata tools use Python's standard library. To inspect the ZIP and PBIX without executing the dashboard:
+
+~~~bash
+python tools/archive_inventory.py "ROAD ACCIDENT.zip" --output archive-inventory.json --sha256
+python tools/inspect_pbix.py "ROAD ACCIDENT.zip" --output pbix-layout.json
+python -m unittest discover -s tests -v
+~~~
+
+## Next steps
+
+- [x] Inspect the real archive, workbook and Power BI layout.
+- [x] Document verified visuals, table structure and data-quality risks.
+- [x] Add a metadata inspection utility and automated tests.
+- [ ] Decide whether to **rename the repository** to match the Great Britain / UK data or use an actual Bavaria dataset.
+- [ ] Record the authoritative data source, licensing terms and query/data transformations.
+- [ ] Investigate weekday/date mismatch and the severity spelling issue.
+- [ ] Export a **real screenshot** from Power BI Desktop after confirming the report displays correctly.
+- [ ] Validate DAX measures, geographic coverage and published analytical findings.
+
+**License:** This repository includes Apache-2.0, but datasets, maps and third-party images may have separate redistribution requirements.

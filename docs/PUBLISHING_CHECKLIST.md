@@ -1,36 +1,17 @@
-# Dashboard portfolio publishing checklist
+# Road accident dashboard publishing checklist
 
-The original project ZIP is preserved. Review the source archive before converting it into a public, editable project repository.
-
-## Phase 1 — project inventory
-
-- [ ] Run `python tools/archive_inventory.py "ROAD ACCIDENT.zip" --output archive-inventory.json --sha256`
-- [ ] Record actual files, formats, tools used and the project entry point.
-- [ ] Verify whether the archive includes raw data, screenshots, reports, dashboard project files or executable code.
-- [ ] Confirm nothing contains sensitive contact details, credentials, restricted information or license violations.
-
-## Phase 2 — technical reproducibility
-
-- [ ] Move reusable editable project files into a descriptive folder, retaining original filenames where appropriate.
-- [ ] Document application version, extensions, dependencies and any environment-specific data connections.
-- [ ] Add a minimal sample dataset **only if redistribution is permitted**.
-- [ ] Include refresh instructions for local file paths and BI connections.
-- [ ] Confirm the dashboard opens on a clean environment without private credentials.
-
-## Phase 3 — analytical documentation
-
-- [ ] Verify provider, source URL, dataset version, years, districts and fields.
-- [ ] Document transformations, filters, exclusions and metric formulas.
-- [ ] Export real dashboard screenshots, with descriptive captions and alt text.
-- [ ] Include **only verified** findings with caveats about uncertainty and population exposure.
-- [ ] Credit external maps, icons, images and basemaps according to their usage terms.
-
-## Phase 4 — publication
-
-- [ ] Update README to identify the confirmed dashboard tool and how to open it.
-- [ ] Add a meaningful overview screenshot to the README.
-- [ ] Attach a release with the editable project artifact if it is too large for ordinary source control.
-- [ ] Confirm the license applies to your original work; distinguish third-party data and visual assets.
-- [ ] Run the project's tests and manually open the dashboard before labeling a release stable.
-
-**Next needed evidence:** a copy of the extracted dashboard file(s), a project screenshot, and provenance for the source data. Without these, project-specific feature claims should not be added.
+- [x] Keep the original ROAD ACCIDENT.zip and repository history intact.
+- [x] Identify the genuine Power BI report and Excel workbook.
+- [x] Inspect PBIX layout, visuals and visual field references.
+- [x] Profile the actual 307,973 Excel records.
+- [x] Document the geography mismatch and data-quality problems.
+- [x] Add inspection code and automated tests.
+- [ ] Resolve naming: repository says Bavaria, data shows Great Britain / UK district and police records.
+- [ ] Verify source URL, exact area, data collection period and dataset redistribution license.
+- [ ] Investigate Day_of_Week vs Accident Date mismatch in every record.
+- [ ] Validate the 49 Fetal severity values against the source's Fatal classification.
+- [ ] Open the actual report in Power BI Desktop and repair any Excel connections.
+- [ ] Verify DAX definitions for CY Accident, CY Casualties and YOY Casualities.
+- [ ] Save a genuine screenshot of the rendered dashboard with suitable rights.
+- [ ] Publish an evidence-backed analytical summary with appropriate caveats.
+- [ ] Consider a versioned cleaned sample and an appropriate release strategy for large artifacts.

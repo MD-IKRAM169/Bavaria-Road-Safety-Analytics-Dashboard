@@ -1,39 +1,35 @@
-# Getting started with the existing project archive
+# Getting started with the actual project
 
-The original repository stored its materials as one file named `ROAD ACCIDENT.zip`. Its internal files have not yet been verified by this documentation update.
+The original [ROAD ACCIDENT.zip](../ROAD%20ACCIDENT.zip) contains the complete original project folder:
 
-## 1. Download and inspect
+~~~text
+ROAD ACCIDENT/
+├── Road_Accident_Analysing_Model.pbix
+├── Road Accident Data.xlsx
+├── Background For Power BI Project.pptx
+├── Background For Power BI Project.jpg
+└── png/  (11 image assets)
+~~~
 
-On the [repository homepage](https://github.com/MD-IKRAM169/Bavaria-Road-Safety-Analytics-Dashboard), open `ROAD ACCIDENT.zip` and download it. Alternatively, after cloning the repository, keep the existing ZIP where it is.
+## Open the report
 
-Install Python 3.10+ if needed, then run from the repository root:
+1. Download and safely extract the original ZIP.
+2. Use Microsoft **Power BI Desktop** to open **Road_Accident_Analysing_Model.pbix**.
+3. If the Excel data-source path no longer exists, update it to the included **Road Accident Data.xlsx** in Power Query or data-source settings, then refresh.
+4. Inspect the report page, filters, DAX measures and map visual.
+5. Export a real screenshot **after** loading the report (the JPG background alone is not a dashboard screenshot).
+6. Review [Data Audit](DATA_AUDIT.md) before publishing numeric results. The data is UK/Great Britain-geographic despite the Bavaria repository name, and weekdays conflict with stored dates.
+
+The report was not run in Power BI Desktop during this repository review; model refresh and final displayed measures have not been verified.
+
+## Without Power BI: metadata tools
+
+Python 3.10+ and standard-library modules are sufficient:
 
 ~~~bash
 python tools/archive_inventory.py "ROAD ACCIDENT.zip" --output archive-inventory.json --sha256
+python tools/inspect_pbix.py "ROAD ACCIDENT.zip" --output pbix-layout.json
+python -m unittest discover -s tests -v
 ~~~
 
-The script reads only ZIP *metadata*: member names, counts, sizes and file types. It does **not** extract archive members or execute programs. Review warnings about unsafe file paths, symlinks, duplicates, encryption and unusually compressed files. This is **not** a complete malware scan.
-
-## 2. Extract carefully
-
-Only extract archives from trusted sources. Inspect archive member paths before extraction. Prefer using your operating system's ZIP viewer or a trusted archiver that prevents path traversal. Avoid running executables, scripts or macros until you know their provenance.
-
-## 3. Identify how to open the dashboard
-
-After inspection, the following common extensions *may* indicate the tool to use. This list does **not** assert that any of these files exist in the archive:
-
-| Extension found | Typically opened with |
-| --- | --- |
-| `.pbix`, `.pbit` | Microsoft Power BI Desktop |
-| `.twb`, `.twbx` | Tableau Desktop / compatible Tableau application |
-| `.ipynb` | Jupyter Notebook or JupyterLab |
-| `.py` | Python and project-specific dependencies |
-| `.r`, `.rmd`, `.qmd` | R / RStudio / Quarto as appropriate |
-| `.xlsx` | Excel or compatible spreadsheet software |
-| `.html` | Web browser (after reviewing file and script safety) |
-
-Some formats reference external data sources, local file paths or credentials. Do not commit any secrets while repairing these links.
-
-## 4. Make the project reproducible
-
-Once you know the actual format, document required application versions, file locations, data source and refresh steps. Add genuine screenshots and verified results. Follow [PUBLISHING_CHECKLIST.md](PUBLISHING_CHECKLIST.md).
+The tools do not extract or execute arbitrary files, decode the binary data model or render Power BI visuals. They are **not malware scanners**.
